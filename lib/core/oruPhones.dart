@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:oruphones/core/injection/injection.dart';
+import 'package:oruphones/core/widgets/custom_app_bar.dart';
 import 'package:oruphones/features/home/presentation/cubit/home/home_cubit.dart';
 
 import '../features/home/presentation/pages/home_page.dart';
@@ -19,7 +20,10 @@ class _OruPhonesState extends State<OruPhones> {
       title: "OruPhones",
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.black),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(85.0),
+          child: CustomAppBar(),
+        ),
         body: MultiBlocProvider(
           providers: [
             BlocProvider<HomeCubit>(

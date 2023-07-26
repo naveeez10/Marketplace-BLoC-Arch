@@ -44,6 +44,8 @@ dependencies:
   logger: ^1.4.0
   dartz: ^0.10.1
   get_it: ^7.6.0
+  carousel_slider: ^4.2.1
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
