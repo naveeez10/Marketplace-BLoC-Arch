@@ -10,13 +10,44 @@ part 'home_cubit.freezed.dart';
 
 @injectable
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit(this.repository) : super(const HomeState.initial());
+  HomeCubit(this.repository) : super(HomeState(homeStatus: HomeStatus.intial));
   final IHomeRepository repository;
 
+  List<Listing> _allListings = [];
+  int _currentPage = 1;
+  int _limit = 10;
+
   Future<void> getListings() async {
-    emit(const HomeState.loading());
-    final response = await repository.getListings();
-    response.fold((l) => emit(const HomeState.failed()),
-        (r) => emit(HomeState.success(r)));
+    emit(state.copyWith(homeStatus: HomeStatus.loading));
+    final response = await repository.getListings(_currentPage, _limit);
+    response.fold(
+      (l) => emit(state.copyWith(homeStatus: HomeStatus.failed)),
+      (r) {
+        _allListings = r;
+        emit(state.copyWith(
+            homeStatus: HomeStatus.success, listings: _allListings));
+      },
+    );
+  }
+
+  Future<void> loadMoreListings() async {
+    print("hi");
+    final response = await repository.getListings(_currentPage, _limit);
+    response.fold(
+      (l) => emit(state.copyWith(homeStatus: HomeStatus.failed)),
+      (r) {
+        _currentPage++;
+        List<Listing> newListings = [];
+        newListings.addAll(r);
+        emit(state.copyWith(
+            listings: List.from(newListings), homeStatus: HomeStatus.success));
+        print(state.listings.length);
+      },
+    );
+  }
+
+  void Refresh() {
+    final list = state.listings;
+    emit(state.copyWith(listings: list));
   }
 }

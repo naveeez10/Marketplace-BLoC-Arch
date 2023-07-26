@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oruphones/core/widgets/product_card.dart';
 import '../../../../core/injection/injection.dart';
 import '../cubit/home/home_cubit.dart';
 
@@ -17,18 +19,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: BlocProvider<HomeCubit>(
-      create: (context) => cubit,
-      child: BlocBuilder<HomeCubit, HomeState>(
-        bloc: context.read<HomeCubit>()..getListings(),
-        builder: (context, state) {
-          return state.maybeMap(
-              orElse: SizedBox.shrink,
-              loading: (value) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-              failed: (value) => const Center(child: Text("Failed")),
-              success: (value) => Column(
+      child: BlocProvider<HomeCubit>(
+        create: (context) => cubit,
+        child: BlocBuilder<HomeCubit, HomeState>(
+          bloc: context.read<HomeCubit>()..getListings(),
+          builder: (context, state) {
+            switch (state.homeStatus) {
+              case (HomeStatus.loading):
+                return Center(child: CircularProgressIndicator());
+              case HomeStatus.success:
+                return SingleChildScrollView(
+                  child: Column(
                     children: [
                       SizedBox(
                         height: 30,
@@ -42,8 +43,7 @@ class _HomePageState extends State<HomePage> {
                                 decoration: BoxDecoration(
                                   color: Colors.red,
                                   image: DecorationImage(
-                                    fit: BoxFit
-                                        .cover, // You can use BoxFit.fill or other properties based on your need
+                                    fit: BoxFit.cover,
                                     image: CachedNetworkImageProvider(
                                       "https://picsum.photos/500/200",
                                     ),
@@ -53,11 +53,45 @@ class _HomePageState extends State<HomePage> {
                             },
                           );
                         }).toList(),
+                      ),
+                      GridView.builder(
+                        shrinkWrap: true,
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 8.0,
+                          childAspectRatio: (164 / 294),
+                        ),
+                        itemCount: state.listings.length + 1,
+                        itemBuilder: (context, index) {
+                          if (index >= state.listings.length) {
+                            cubit.loadMoreListings();
+                            cubit.Refresh();
+                            return Center(child: CircularProgressIndicator());
+                          } else {
+                            print(state.listings.length);
+                          }
+                          return GridTile(
+                            child: ProductCard(
+                              product: state.listings[index],
+                            ),
+                          );
+                        },
                       )
                     ],
-                  ));
-        },
+                  ),
+                );
+              case HomeStatus.failed:
+                return Center(
+                  child: Text("No Listings Found"),
+                );
+              default:
+                return SizedBox.shrink();
+            }
+          },
+        ),
       ),
-    ));
+    );
   }
 }

@@ -14,11 +14,12 @@ class HomeRepository extends IHomeRepository {
   final Logger _logger;
 
   @override
-  Future<Either<Failure, List<Listing>>> getListings() async {
+  Future<Either<Failure, List<Listing>>> getListings(
+      int page, int limit) async {
     try {
       final response = await _dio.get('/getListings', queryParameters: {
-        'page': 2,
-        'limit': 10,
+        'page': page,
+        'limit': limit,
       });
       final List<dynamic> listingsData = response.data['listings'];
       final List<Listing> listings = listingsData
