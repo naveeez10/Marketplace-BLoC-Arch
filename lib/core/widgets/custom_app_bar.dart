@@ -1,5 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oruphones/core/routes/router.gr.dart';
+import 'package:oruphones/features/search/presentation/cubit/search_cubit.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -71,6 +75,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             // padding: EdgeInsets.symmetric(horizontal: 10),
             child: TextField(
+              onTap: () {
+                if (AutoRouter.of(context).current.name != SearchRoute.name) {
+                  AutoRouter.of(context).push(SearchRoute());
+                }
+              },
+              onChanged: (value) =>
+                  context.read<SearchCubit>().searchListings(value),
               decoration: InputDecoration(
                   icon: Padding(
                     padding: const EdgeInsets.only(left: 5.0),

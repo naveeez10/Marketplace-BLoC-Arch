@@ -47,6 +47,7 @@ dependencies:
   carousel_slider: ^4.2.1
   cached_network_image: ^3.2.3
   intl: ^0.18.1
+  auto_route: ^7.7.1
 
 dev_dependencies:
   flutter_test:

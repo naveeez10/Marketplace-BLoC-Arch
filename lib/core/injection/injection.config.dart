@@ -13,12 +13,14 @@ import 'package:dio/dio.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:logger/logger.dart' as _i4;
-import 'package:oruphones/core/module.dart' as _i8;
+import 'package:oruphones/core/module.dart' as _i9;
 import 'package:oruphones/features/home/presentation/cubit/home/home_cubit.dart'
-    as _i7;
+    as _i8;
 import 'package:oruphones/features/home/repository/home_repository.dart' as _i6;
 import 'package:oruphones/features/home/repository/i_home_repository.dart'
     as _i5;
+import 'package:oruphones/features/search/presentation/cubit/search_cubit.dart'
+    as _i7;
 
 const String _prod = 'prod';
 
@@ -46,9 +48,11 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i3.Dio>(),
           gh<_i4.Logger>(),
         ));
-    gh.factory<_i7.HomeCubit>(() => _i7.HomeCubit(gh<_i5.IHomeRepository>()));
+    gh.factory<_i7.SearchCubit>(
+        () => _i7.SearchCubit(gh<_i5.IHomeRepository>()));
+    gh.factory<_i8.HomeCubit>(() => _i8.HomeCubit(gh<_i5.IHomeRepository>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i8.RegisterModule {}
+class _$RegisterModule extends _i9.RegisterModule {}
