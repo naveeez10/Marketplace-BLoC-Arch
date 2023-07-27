@@ -36,9 +36,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   void setupInteractions() async {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      AutoRouter.of(context).push(NotificationsRoute());
+    });
+
     FirebaseMessaging.onBackgroundMessage((RemoteMessage message) async {
       AutoRouter.of(context).push(NotificationsRoute());
     });
+
+    RemoteMessage? initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
+
+    if (initialMessage != null) {
+      AutoRouter.of(context).push(NotificationsRoute());
+    }
   }
 
   @override
