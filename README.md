@@ -19,7 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/oruphones.git
+   git clone https://github.com/naveeez10/oruphones.git
    ```
 2. Navigate to the project directory:
    ```bash
