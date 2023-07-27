@@ -48,6 +48,8 @@ dependencies:
   cached_network_image: ^3.2.3
   intl: ^0.18.1
   auto_route: ^7.7.1
+  firebase_messaging: ^14.6.5
+  firebase_core: ^2.15.0
 
 dev_dependencies:
   flutter_test:

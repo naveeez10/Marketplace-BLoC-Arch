@@ -9,6 +9,7 @@ class AppRouter extends $AppRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(page: HomeRoute.page, path: "/"),
-    AutoRoute(page: SearchRoute.page)
+    AutoRoute(page: SearchRoute.page),
+    AutoRoute(page: NotificationsRoute.page)
   ];
 }

@@ -15,7 +15,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   List<Listing> _allListings = [];
   int _currentPage = 1;
-  int _limit = 10;
+  int _limit = 20;
 
   Future<void> getListings() async {
     emit(state.copyWith(homeStatus: HomeStatus.loading));
@@ -31,7 +31,6 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> loadMoreListings() async {
-    print("hi");
     final response = await repository.getListings(_currentPage, _limit);
     response.fold(
       (l) => emit(state.copyWith(homeStatus: HomeStatus.failed)),
@@ -41,7 +40,6 @@ class HomeCubit extends Cubit<HomeState> {
         newListings.addAll(r);
         emit(state.copyWith(
             listings: List.from(newListings), homeStatus: HomeStatus.success));
-        print(state.listings.length);
       },
     );
   }

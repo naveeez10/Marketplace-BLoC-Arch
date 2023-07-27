@@ -135,32 +135,99 @@ class _SearchPageState extends State<SearchPage> {
                                 style: TextStyle(color: Colors.black),
                               )),
                           success: (value) {
-                            if (value.searchResults.length == 0) {
+                            if (value.searchResults['models']!.isEmpty &&
+                                value.searchResults['makes']!.isEmpty) {
                               return Center(
                                   child: Text(
                                 "No results found",
                                 style: TextStyle(color: Colors.black),
                               ));
                             }
-                            return ListView.separated(
-                              shrinkWrap: true,
-                              separatorBuilder: (context, index) => Divider(
-                                color: Colors.grey[300],
-                              ),
-                              itemCount: value.searchResults.length,
-                              itemBuilder: (context, index) => Container(
-                                color: Colors.transparent,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    value.searchResults[index],
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 20),
+                            return Column(
+                              children: [
+                                ListView.separated(
+                                  shrinkWrap: true,
+                                  separatorBuilder: (context, index) => Divider(
+                                    color: Colors.grey[300],
+                                  ),
+                                  itemCount:
+                                      value.searchResults['makes']!.length,
+                                  itemBuilder: (context, index) => Container(
+                                    color: Colors.transparent,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10.0, horizontal: 20),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          if (index == 0) ...[
+                                            Text(
+                                              "Brands",
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 15),
+                                            ),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                          ],
+                                          Text(
+                                            value
+                                                .searchResults['makes']![index],
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 15),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
+                                ListView.separated(
+                                  shrinkWrap: true,
+                                  separatorBuilder: (context, index) => Divider(
+                                    color: Colors.grey[300],
+                                  ),
+                                  itemCount:
+                                      value.searchResults['models']!.length,
+                                  itemBuilder: (context, index) => Container(
+                                    color: Colors.transparent,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10.0, horizontal: 20),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          if (index == 0) ...[
+                                            Text(
+                                              "Mobile Models",
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 15),
+                                            ),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                          ],
+                                          Text(
+                                            value.searchResults['models']![
+                                                index],
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 15),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             );
                           });
                     },

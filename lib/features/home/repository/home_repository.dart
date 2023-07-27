@@ -14,13 +14,15 @@ class HomeRepository extends IHomeRepository {
   final Logger _logger;
 
   @override
-  Future<Either<Failure, List<dynamic>>> searchListings(
+  Future<Either<Failure, Map<String, List<dynamic>>>> searchListings(
       String searchTerm) async {
     try {
       final Response =
           await _dio.post('/searchModel', data: {"searchModel": searchTerm});
 
-      final searchResults = Response.data['models'];
+      Map<String, List<dynamic>> searchResults = {};
+      searchResults['models'] = Response.data['models'];
+      searchResults['makes'] = Response.data['makes'];
       _logger.d(searchResults);
       return Right(searchResults);
     } catch (e) {

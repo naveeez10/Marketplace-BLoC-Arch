@@ -8,7 +8,7 @@ abstract class IHomeRepository {
     int page,
     int limit,
   );
-  Future<Either<Failure, List<dynamic>>> searchListings(
+  Future<Either<Failure, Map<String, List<dynamic>>>> searchListings(
     String searchTerm,
   );
 }

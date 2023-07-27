@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "678897224995",
+    "project_id": "oruphones-f6ee5",
+    "storage_bucket": "oruphones-f6ee5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678897224995:android:57da78012e738629d71096",
+        "android_client_info": {
+          "package_name": "com.example.oruphones"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678897224995-7dr5v94a02m5cr366hn4sgjoep6q352g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNtkUGzeruH6Zs12bS3zfI2R_edY2s7A8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678897224995-7dr5v94a02m5cr366hn4sgjoep6q352g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

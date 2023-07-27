@@ -6,6 +6,6 @@ class SearchState with _$SearchState {
   const factory SearchState.loading() = _Loading;
   const factory SearchState.failed() = _Failed;
   const factory SearchState.success(
-    List<dynamic> searchResults,
+    Map<String, List<dynamic>> searchResults,
   ) = _Success;
 }

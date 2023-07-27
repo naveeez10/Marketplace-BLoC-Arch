@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:oruphones/core/routes/router.gr.dart';
 import 'package:oruphones/core/widgets/product_card.dart';
 import '../../../../core/injection/injection.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
@@ -12,13 +14,33 @@ import '../cubit/home/home_cubit.dart';
 @RoutePage()
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   final HomeCubit cubit = getIt<HomeCubit>();
+
+  @override
+  void initState() {
+    super.initState();
+    getToken();
+    setupInteractions();
+  }
+
+  void getToken() async {
+    String? token = await FirebaseMessaging.instance.getToken();
+    if (kDebugMode) {
+      print('Token: $token');
+    }
+  }
+
+  void setupInteractions() async {
+    FirebaseMessaging.onBackgroundMessage((RemoteMessage message) async {
+      AutoRouter.of(context).push(NotificationsRoute());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

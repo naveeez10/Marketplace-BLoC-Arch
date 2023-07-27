@@ -21,7 +21,7 @@ mixin _$SearchState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failed,
-    required TResult Function(List<dynamic> searchResults) success,
+    required TResult Function(Map<String, List<dynamic>> searchResults) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$SearchState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? failed,
-    TResult? Function(List<dynamic> searchResults)? success,
+    TResult? Function(Map<String, List<dynamic>> searchResults)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$SearchState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failed,
-    TResult Function(List<dynamic> searchResults)? success,
+    TResult Function(Map<String, List<dynamic>> searchResults)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,7 +126,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failed,
-    required TResult Function(List<dynamic> searchResults) success,
+    required TResult Function(Map<String, List<dynamic>> searchResults) success,
   }) {
     return initial();
   }
@@ -137,7 +137,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? failed,
-    TResult? Function(List<dynamic> searchResults)? success,
+    TResult? Function(Map<String, List<dynamic>> searchResults)? success,
   }) {
     return initial?.call();
   }
@@ -148,7 +148,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failed,
-    TResult Function(List<dynamic> searchResults)? success,
+    TResult Function(Map<String, List<dynamic>> searchResults)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -239,7 +239,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failed,
-    required TResult Function(List<dynamic> searchResults) success,
+    required TResult Function(Map<String, List<dynamic>> searchResults) success,
   }) {
     return loading();
   }
@@ -250,7 +250,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? failed,
-    TResult? Function(List<dynamic> searchResults)? success,
+    TResult? Function(Map<String, List<dynamic>> searchResults)? success,
   }) {
     return loading?.call();
   }
@@ -261,7 +261,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failed,
-    TResult Function(List<dynamic> searchResults)? success,
+    TResult Function(Map<String, List<dynamic>> searchResults)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -351,7 +351,7 @@ class _$_Failed implements _Failed {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failed,
-    required TResult Function(List<dynamic> searchResults) success,
+    required TResult Function(Map<String, List<dynamic>> searchResults) success,
   }) {
     return failed();
   }
@@ -362,7 +362,7 @@ class _$_Failed implements _Failed {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? failed,
-    TResult? Function(List<dynamic> searchResults)? success,
+    TResult? Function(Map<String, List<dynamic>> searchResults)? success,
   }) {
     return failed?.call();
   }
@@ -373,7 +373,7 @@ class _$_Failed implements _Failed {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failed,
-    TResult Function(List<dynamic> searchResults)? success,
+    TResult Function(Map<String, List<dynamic>> searchResults)? success,
     required TResult orElse(),
   }) {
     if (failed != null) {
@@ -430,7 +430,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<dynamic> searchResults});
+  $Res call({Map<String, List<dynamic>> searchResults});
 }
 
 /// @nodoc
@@ -449,7 +449,7 @@ class __$$_SuccessCopyWithImpl<$Res>
       null == searchResults
           ? _value._searchResults
           : searchResults // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as Map<String, List<dynamic>>,
     ));
   }
 }
@@ -457,15 +457,15 @@ class __$$_SuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success(final List<dynamic> searchResults)
+  const _$_Success(final Map<String, List<dynamic>> searchResults)
       : _searchResults = searchResults;
 
-  final List<dynamic> _searchResults;
+  final Map<String, List<dynamic>> _searchResults;
   @override
-  List<dynamic> get searchResults {
-    if (_searchResults is EqualUnmodifiableListView) return _searchResults;
+  Map<String, List<dynamic>> get searchResults {
+    if (_searchResults is EqualUnmodifiableMapView) return _searchResults;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_searchResults);
+    return EqualUnmodifiableMapView(_searchResults);
   }
 
   @override
@@ -498,7 +498,7 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() failed,
-    required TResult Function(List<dynamic> searchResults) success,
+    required TResult Function(Map<String, List<dynamic>> searchResults) success,
   }) {
     return success(searchResults);
   }
@@ -509,7 +509,7 @@ class _$_Success implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? failed,
-    TResult? Function(List<dynamic> searchResults)? success,
+    TResult? Function(Map<String, List<dynamic>> searchResults)? success,
   }) {
     return success?.call(searchResults);
   }
@@ -520,7 +520,7 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? failed,
-    TResult Function(List<dynamic> searchResults)? success,
+    TResult Function(Map<String, List<dynamic>> searchResults)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -568,9 +568,10 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements SearchState {
-  const factory _Success(final List<dynamic> searchResults) = _$_Success;
+  const factory _Success(final Map<String, List<dynamic>> searchResults) =
+      _$_Success;
 
-  List<dynamic> get searchResults;
+  Map<String, List<dynamic>> get searchResults;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
