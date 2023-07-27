@@ -111,8 +111,6 @@ class _HomePageState extends State<HomePage> {
                               cubit.loadMoreListings();
                               cubit.Refresh();
                               return Center(child: CircularProgressIndicator());
-                            } else {
-                              print(state.listings.length);
                             }
                             return GridTile(
                               child: ProductCard(

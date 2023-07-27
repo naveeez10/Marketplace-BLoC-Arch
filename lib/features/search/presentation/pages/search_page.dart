@@ -147,6 +147,7 @@ class _SearchPageState extends State<SearchPage> {
                               children: [
                                 ListView.separated(
                                   shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
                                   separatorBuilder: (context, index) => Divider(
                                     color: Colors.grey[300],
                                   ),
@@ -188,6 +189,7 @@ class _SearchPageState extends State<SearchPage> {
                                 ),
                                 ListView.separated(
                                   shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
                                   separatorBuilder: (context, index) => Divider(
                                     color: Colors.grey[300],
                                   ),
