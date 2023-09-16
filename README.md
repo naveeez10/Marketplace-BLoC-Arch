@@ -1,6 +1,6 @@
-# OruPhones
+# Phone Marketplace with BLoC
 
-OruPhones is a Flutter application that allows users to explore and purchase various phone models.
+This is a Flutter application that allows users to explore and purchase various phone models.
 
 ## Getting Started
 
